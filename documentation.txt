@@ -1,0 +1,36 @@
+**laravel and vue with inertia**
+1: create a laravel project
+2: install server-side inertia 
+3: create HomeController
+4: spa hobe tai delete all inside welcome.blade.php, laravel er resource/views/welcome.blade.php ke app.blade.php krbo 
+5: app.blade a inertia er root template ta paste korbo 
+6: follow the inertia step ...make a middleware php artisan inertia:middleware
+7: 'web' => [
+    // ...
+    \App\Http\Middleware\HandleInertiaRequests::class,
+],
+...laravel configuration completed
+**client site work** 
+1: installing vue in this project with inertia 
+2: resource/js make folder like --a: Component,b: pages,c:Utility
+3: resource/js/app.js ke configure korte hobe 
+4: Initialize the Inertia app theke code copy kre app.js a paste korbo 
+5: app.js a vue ke install korbo
+6: vite.config.js a import vue from '@vitejs/plugin-vue' google like install korbo
+7: vite.config.js a 
+plugins: [
+        laravel({
+            input: ['resources/css/app.css', 'resources/js/app.js'],
+            refresh: true,
+        }),
+        vue() eita add korbo just
+8: blade engine er kaj cilo laravel ke vue er shate connect kore dewa , er por or ar kaj nei
+9: js/Pages/Home.vue create korbo.. akn theke Pages e amar root foler front er jnno
+10: HomeController a 
+public function HomePage() {
+        return Inertia::render('Home');
+    }
+11: web.php te
+Route::get('/',[HomeController::class,'HomePage']);
+12: npm run dev
+13: php artisan serve 
